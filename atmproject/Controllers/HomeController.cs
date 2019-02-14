@@ -12,7 +12,15 @@ namespace atmproject.Controllers
         {
             return View();
         }
-
+ /*       public ActionResult BankAccount()
+        {
+            ViewBag.Message = "Bank Account access";
+            var bankaccounts = from b in BankAccountController.GetBankAccountList()
+                            orderby b.ID
+                            select b;
+            return View(bankaccounts);
+        }
+        */
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

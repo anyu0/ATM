@@ -29,5 +29,7 @@ namespace atmproject.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<atmproject.Models.BankAccount> BankAccounts { get; set; }
     }
 }
