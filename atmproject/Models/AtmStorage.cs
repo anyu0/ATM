@@ -8,8 +8,8 @@ namespace atmproject.Models
     public class AtmStorage
     {
         public int ID { get; set; }
-        public int bills { get; set; }
-        public int deposits { get; set; }
+        public int Bills { get; set; }
+        public int Deposits { get; set; }
 
     }
 }
