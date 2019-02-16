@@ -121,7 +121,7 @@ namespace atmproject.Controllers
                     Pin = 26
                 },
             };
-        }
 
+        }
     }
 }
