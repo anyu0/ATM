@@ -26,5 +26,9 @@ namespace atmproject.Controllers
 
             return View();
         }
+        public ActionResult Confirmation()
+        { 
+            return View();
+        }
     }
 }
