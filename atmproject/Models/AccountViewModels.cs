@@ -6,7 +6,7 @@ namespace atmproject.Models
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "Account Number")]
         public string Email { get; set; }
     }
 
@@ -49,13 +49,13 @@ namespace atmproject.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Account Number")]
+        //[EmailAddress]
+        public string AccountNumber { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Pin")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
@@ -66,8 +66,8 @@ namespace atmproject.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "AccountNumber")]
+        public string AccountNumber { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

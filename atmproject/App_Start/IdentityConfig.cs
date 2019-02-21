@@ -46,18 +46,18 @@ namespace atmproject
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
-                AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
+                AllowOnlyAlphanumericUserNames = true,
+               // RequireUniqueEmail = true
             };
 
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
             {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
+                RequiredLength = 4,
+                //RequireNonLetterOrDigit = true,
                 RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                //RequireLowercase = true,
+                //RequireUppercase = true,
             };
 
             // Configure user lockout defaults
@@ -67,7 +67,7 @@ namespace atmproject
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<ApplicationUser>
+            /*manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<ApplicationUser>
             {
                 MessageFormat = "Your security code is {0}"
             });
@@ -75,7 +75,7 @@ namespace atmproject
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
-            });
+            });*/
             manager.EmailService = new EmailService();
             manager.SmsService = new SmsService();
             var dataProtectionProvider = options.DataProtectionProvider;
@@ -87,7 +87,7 @@ namespace atmproject
             return manager;
         }
     }
-
+    
     // Configure the application sign-in manager which is used in this application.
     public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
