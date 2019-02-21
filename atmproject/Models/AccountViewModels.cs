@@ -7,7 +7,7 @@ namespace atmproject.Models
     {
         [Required]
         [Display(Name = "Account Number")]
-        public string Email { get; set; }
+        public string AccountNumber { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -42,7 +42,7 @@ namespace atmproject.Models
     public class ForgotViewModel
     {
         [Required]
-        [Display(Name = "Email")]
+        [Display(Name = "AccountNumber")]
         public string Email { get; set; }
     }
 
@@ -65,12 +65,12 @@ namespace atmproject.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
+        //[EmailAddress]
         [Display(Name = "AccountNumber")]
         public string AccountNumber { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 5)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -85,7 +85,7 @@ namespace atmproject.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "AccountNumber")]
         public string Email { get; set; }
 
         [Required]
@@ -106,7 +106,7 @@ namespace atmproject.Models
     {
         [Required]
         [EmailAddress]
-        [Display(Name = "Email")]
+        [Display(Name = "AccountNumber")]
         public string Email { get; set; }
     }
 }
