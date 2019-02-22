@@ -181,6 +181,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AtmStorage.cs" />
     <Compile Include="Models\BankAccount.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -246,6 +247,8 @@
     <Content Include="Views\BankAccount\Index.cshtml" />
     <Content Include="Views\BankAccount\Create.cshtml" />
     <Content Include="Views\Home\Confirmation.cshtml" />
+    <Content Include="Views\BankAccount\Edit.cshtml" />
+    <Content Include="Views\BankAccount\Delete.cshtml" 
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
