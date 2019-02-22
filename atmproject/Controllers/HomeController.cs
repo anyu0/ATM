@@ -20,7 +20,7 @@ namespace atmproject.Controllers
                             select b;
             return View(bankaccounts);
         }
-        */
+        
         public ActionResult About()
         {
             ViewBag.Message = "This is our team's Bank of 3101 ATM Machine.";
@@ -33,7 +33,7 @@ namespace atmproject.Controllers
             ViewBag.Message = "Contact Us.";
 
             return View();
-        }
+        }*/
         public ActionResult Confirmation()
         { 
             return View();
