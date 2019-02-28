@@ -7,11 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using atmproject.Models;
-
 namespace atmproject.Controllers
 {
     public class UsersController : Controller
     {
+        private static int atmbalance = 10000;
         private AccountDBEntities db = new AccountDBEntities();
         
 
@@ -106,7 +106,7 @@ namespace atmproject.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (moneyinput % 20 != 0 || users.Balance < moneyinput)
+                if (moneyinput % 20 != 0 || users.Balance < moneyinput || moneyinput > atmbalance)
                 {
                     return RedirectToAction("WithdrawalError", new { id = users.AccountNumber });
                 }
@@ -141,7 +141,7 @@ namespace atmproject.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (moneyinput % 20 != 0 || users.Balance < moneyinput)
+                if (moneyinput % 20 != 0 || users.Balance < moneyinput || moneyinput > atmbalance)
                 {
                     return RedirectToAction("WithdrawalError", new { id = users.AccountNumber });
                 }
