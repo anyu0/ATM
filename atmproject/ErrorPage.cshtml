@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Enter";
+}
+
+<h2 style="color:red;">Invalid Account Number! Please try again!</h2>
+
+<h2>Enter Account Number</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Enter account number</h4>
+        <hr />
+
+        <form method="POST">
+            <input type="text" id="moneyinput" placeholder="Enter 10 Digit Account Number" name="account" />
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
