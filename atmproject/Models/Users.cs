@@ -16,5 +16,6 @@ namespace atmproject.Models
     {
         public string AccountNumber { get; set; }
         public int Balance { get; set; }
+        public System.Decimal PIN { get; set; }
     }
 }

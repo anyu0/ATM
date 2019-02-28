@@ -13,10 +13,10 @@ namespace atmproject.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TutorialDBEntities : DbContext
+    public partial class AccountDBEntities3 : DbContext
     {
-        public TutorialDBEntities()
-            : base("name=TutorialDBEntities")
+        public AccountDBEntities3()
+            : base("name=AccountDBEntities3")
         {
         }
     
@@ -25,6 +25,8 @@ namespace atmproject.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<ATM> ATM { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     }
 }

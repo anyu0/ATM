@@ -22,8 +22,13 @@ namespace atmproject.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "AccountNumber,Balance")] Users users, string account)
+        public ActionResult Index([Bind(Include = "AccountNumber,Balance,PIN")] Users users, string account, decimal pin)
         {
+            Users users2 = db.Users.Find(account);
+            if (users2 == null || users2.PIN != pin)
+            {
+                return RedirectToAction("IndexError");
+            }
             return RedirectToAction("Balance", new { id = account });
         }
         public ActionResult IndexError()
@@ -32,9 +37,14 @@ namespace atmproject.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult IndexError([Bind(Include = "AccountNumber,Balance")] Users users, string account)
+        public ActionResult IndexError([Bind(Include = "AccountNumber,Balance,PIN")] Users users, string account, decimal pin)
         {
-            return RedirectToAction("Balance", new { id = account });
+            Users users2 = db.Users.Find(account);
+            if (users2 == null || users2.PIN != pin)
+            {
+                return RedirectToAction("IndexError");
+            }
+            return RedirectToAction("Balance", new { id = account});
         }
 
 
@@ -72,14 +82,17 @@ namespace atmproject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Deposit([Bind(Include = "AccountNumber,Balance")] Users users, int moneyinput)
+        public ActionResult Deposit(Users users, int moneyinput)
         {
+            
             if (ModelState.IsValid)
             {
+                System.Diagnostics.Debug.WriteLine(users.PIN);
                 users.Balance += moneyinput;
+                atmbalance += moneyinput;
                 db.Entry(users).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Balance", new { id = users.AccountNumber } );
+                return RedirectToAction("Balance", new { id = users.AccountNumber} );
             }
             return View(users);
         }
@@ -102,7 +115,7 @@ namespace atmproject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Withdrawal([Bind(Include = "AccountNumber,Balance")] Users users, int moneyinput)
+        public ActionResult Withdrawal([Bind(Include = "AccountNumber,Balance,PIN")] Users users, int moneyinput)
         {
             if (ModelState.IsValid)
             {
@@ -111,6 +124,8 @@ namespace atmproject.Controllers
                     return RedirectToAction("WithdrawalError", new { id = users.AccountNumber });
                 }
                 users.Balance -= moneyinput;
+                atmbalance -= moneyinput;
+                users.PIN = users.PIN;
                 db.Entry(users).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Balance", new { id = users.AccountNumber });
@@ -137,7 +152,7 @@ namespace atmproject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult WithdrawalError([Bind(Include = "AccountNumber,Balance")] Users users, int moneyinput)
+        public ActionResult WithdrawalError([Bind(Include = "AccountNumber,Balance,PIN")] Users users, int moneyinput)
         {
             if (ModelState.IsValid)
             {
@@ -146,6 +161,7 @@ namespace atmproject.Controllers
                     return RedirectToAction("WithdrawalError", new { id = users.AccountNumber });
                 }
                 users.Balance -= moneyinput;
+                users.PIN = users.PIN;
                 db.Entry(users).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Balance", new { id = users.AccountNumber });
